@@ -6,7 +6,7 @@
      steps:
        - run: |
              if [ "$SSH_HOST" = "1.2.3.4" ]; then
-                 echo hello
+                 echo 1.2.3.4
              fi
  workflows:
    version: 2
