@@ -1,0 +1,18 @@
+ version: 2
+ jobs:
+   deploy:
+     machine:
+       enabled: true
+     steps:
+       - run: |
+             if [ "$SSH_USER" = "ubuntu" ]; then
+                 echo hello
+             fi
+ workflows:
+   version: 2
+   build-and-deploy:
+     jobs:
+       - deploy:
+           filters:
+             branches:
+               only: main # only deploy on the main branch11
