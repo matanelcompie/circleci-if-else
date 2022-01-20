@@ -1,18 +1,16 @@
- version: 2
+ version: 2.1
  jobs:
-   deploy:
-     machine:
-       enabled: true
+   build:
+     docker:
+       - image: "circleci/node:<< pipeline.parameters.image-tag >>"
+         auth:
+           username: mydockerhub-user
+           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+     environment:
+       IMAGETAG: "<< pipeline.parameters.image-tag >>"
      steps:
-       - run: |
-             if [ "$SSH_HOST" = "1.2.3.4" ]; then
-                 echo 1.2.3.4
-             fi
- workflows:
-   version: 2
-   build-and-deploy:
-     jobs:
-       - deploy
-#           filters:
-#             branches:
-#               only: branch_test # only deploy on the main branch11
+       - run: echo "Image tag used was ${IMAGETAG}"
+ parameters:
+   image-tag:
+     default: latest
+     type: string
