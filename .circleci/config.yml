@@ -12,7 +12,7 @@
    version: 2
    build-and-deploy:
      jobs:
-       - deploy:
-           filters:
-             branches:
-               only: main # only deploy on the main branch11
+       - deploy
+#           filters:
+#             branches:
+#               only: branch_test # only deploy on the main branch11
